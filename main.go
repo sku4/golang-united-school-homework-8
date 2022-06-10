@@ -155,7 +155,6 @@ func findById(args Arguments, writer io.Writer) error {
 		return err
 	}
 
-	var found bool
 	var b []byte
 	for _, u := range us {
 		if u.Id == args["id"] {
@@ -163,13 +162,8 @@ func findById(args Arguments, writer io.Writer) error {
 			if err != nil {
 				return err
 			}
-			found = true
 			break
 		}
-	}
-
-	if !found {
-		return fmt.Errorf("Item with id %v not found", args["id"])
 	}
 
 	_, err = writer.Write(b)
